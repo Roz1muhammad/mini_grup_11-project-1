@@ -29,7 +29,7 @@ migration:
 migrate:
 	python3 manage.py migrate
 startapp:
-	python manage.py startapp $(name) && mv $(name) apps/v1/$(name)
+	python manage.py startapp $(name)
 clear-linux:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete && find . -path "*/migrations/*.pyc"  -delete
 clear-windows:
@@ -43,7 +43,4 @@ no-venv:
 	rm -rf env/ venv/ .venv/
 re-mig:
 	make no-sqlite-db && make clear-linux && make re-django & make i && make mig && make cru && make collect && make test && make run-asgi
-tunnel:
-	jprq http 7 -s edu_press_api
-open-bash:
-	docker exec -it edu_press_api bash
+	
